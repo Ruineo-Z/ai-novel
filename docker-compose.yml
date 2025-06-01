@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  # PostgreSQL数据库
+  postgres:
+    image: postgres:15
+    container_name: ai_novel_postgres
+    environment:
+      POSTGRES_DB: ai_novel
+      POSTGRES_USER: ai_novel_user
+      POSTGRES_PASSWORD: ai_novel_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ai_novel_network
+
+  # Redis缓存
+  redis:
+    image: redis:7-alpine
+    container_name: ai_novel_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ai_novel_network
+
+  # FastAPI应用
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai_novel_api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://ai_novel_user:ai_novel_password@postgres:5432/ai_novel
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+    networks:
+      - ai_novel_network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Ollama (可选，用于本地LLM)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai_novel_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - ai_novel_network
+    # 如果有GPU支持，取消注释以下行
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+volumes:
+  postgres_data:
+  redis_data:
+  ollama_data:
+
+networks:
+  ai_novel_network:
+    driver: bridge
