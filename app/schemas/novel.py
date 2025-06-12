@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
+
 class ProtagonistInfo(BaseModel):
     name: str
     gender: str
@@ -10,14 +11,17 @@ class ProtagonistInfo(BaseModel):
     personality: Optional[str] = None
     special_abilities: Optional[str] = None
 
+
 class NovelBase(BaseModel):
     title: str
     genre: str
     world_setting: str
     protagonist_info: ProtagonistInfo
 
+
 class NovelCreate(NovelBase):
     pass
+
 
 class NovelUpdate(BaseModel):
     title: Optional[str] = None
@@ -26,14 +30,17 @@ class NovelUpdate(BaseModel):
     protagonist_info: Optional[ProtagonistInfo] = None
     status: Optional[str] = None
 
+
 class ChapterBase(BaseModel):
     title: Optional[str] = None
     content: str
     choices: Optional[List[str]] = None
     user_choice: Optional[str] = None
 
+
 class ChapterCreate(ChapterBase):
     pass
+
 
 class ChapterResponse(ChapterBase):
     id: int
@@ -41,9 +48,10 @@ class ChapterResponse(ChapterBase):
     chapter_number: int
     word_count: int
     created_at: datetime
-    
+
     class Config:
         from_attributes = True
+
 
 class NovelResponse(NovelBase):
     id: int
@@ -53,9 +61,10 @@ class NovelResponse(NovelBase):
     created_at: datetime
     updated_at: datetime
     chapters: Optional[List[ChapterResponse]] = None
-    
+
     class Config:
         from_attributes = True
+
 
 class NovelSummary(BaseModel):
     """小说摘要信息"""
@@ -67,6 +76,6 @@ class NovelSummary(BaseModel):
     total_words: int
     created_at: datetime
     updated_at: datetime
-    
+
     class Config:
         from_attributes = True
