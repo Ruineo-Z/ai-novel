@@ -1,5 +1,8 @@
-from app.schemas.base import NovelStyle, ProtagonistInfo, Choice
 from typing import List, Optional
+
+from app.schemas.base import NovelStyle, Choice
+from app.schemas.agent_outputs import WorldSettingOutput, ChapterOutput, ProtagonistGenerationOutput, \
+    ChoiceConsequenceOutput, StoryAnalysisOutput
 
 
 class PromptManager:
@@ -18,9 +21,10 @@ class PromptManager:
 3. 主要地点和地理环境
 4. 重要势力和组织
 5. 世界运行规则和法则
-6. 适合主人公开始冒险的起始场景
 
 请确保世界观设定符合{self.style_value}小说的特点和读者期待。
+        
+禁止生成任何人物
         """
 
         # 根据不同小说类型添加特定要求
@@ -67,7 +71,7 @@ class PromptManager:
 
         return base_prompt
 
-    def get_protagonist_generation_prompt(self, world_setting: Optional[str] = None) -> str:
+    def get_protagonist_generation_prompt(self, world_setting: WorldSettingOutput) -> str:
         """获取主人公生成提示词"""
         prompt = f"""
 你是一名专业的小说角色设计师，擅长创造立体生动的主人公形象。
@@ -93,9 +97,9 @@ class PromptManager:
 
         return prompt
 
-    def get_chapter_generation_prompt(self, protagonist_info: Optional[str] = None,
-                                      world_setting: Optional[str] = None,
-                                      story_history: Optional[List[str]] = None,
+    def get_chapter_generation_prompt(self, protagonist_info: ProtagonistGenerationOutput,
+                                      world_setting: WorldSettingOutput,
+                                      story_history: Optional[StoryAnalysisOutput] = None,
                                       current_chapter: int = 1) -> str:
         """获取章节内容生成提示词"""
         prompt = f"""
@@ -106,7 +110,7 @@ class PromptManager:
 2. 推进主线剧情，展现角色成长
 3. 包含适当的冲突和悬念
 4. 在章节结尾提供2-4个有意义的选择项
-5. 字数控制在800-1500字之间
+5. 字数控制在3000字左右（汉字）
 
 章节应该包括：
 - 引人入胜的章节标题
@@ -162,9 +166,9 @@ class PromptManager:
         """
         return prompt
 
-    def get_story_analysis_prompt(self, story_history: List[str],
+    def get_story_analysis_prompt(self, story_history: List[StoryAnalysisOutput],
                                   current_chapter: int,
-                                  protagonist_info: Optional[str] = None) -> str:
+                                  protagonist_info: ProtagonistGenerationOutput) -> str:
         """获取故事分析提示词"""
         prompt = f"""
 你是一名专业的{self.style_value}小说分析师，擅长分析故事结构和剧情发展。

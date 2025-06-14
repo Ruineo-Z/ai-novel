@@ -171,3 +171,4 @@ data/
 *.bak
 *.backup
 *.old
+test.*
