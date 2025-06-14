@@ -1,29 +1,41 @@
+import os
+from typing import Optional, List
+
 from pydantic_settings import BaseSettings
-from typing import Optional
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Settings(BaseSettings):
-    # 应用配置
-    APP_NAME: str = "AI Novel Backend"
-    VERSION: str = "1.0.0"
-    DEBUG: bool = False
-    
-    # 数据库配置
-    DATABASE_URL: str = "postgresql://user:password@localhost/ai_novel"
-    
-    # Redis配置
-    REDIS_URL: str = "redis://localhost:6379"
-    
-    # LLM配置
-    OPENAI_API_KEY: Optional[str] = None
-    GEMINI_API_KEY: Optional[str] = None
+    # AI Model Configuration
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-preview-05-20")
     OLLAMA_BASE_URL: str = "http://localhost:11434"
-    
-    # JWT配置
-    SECRET_KEY: str = "your-secret-key-here"
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-    
+    OLLAMA_MODEL: str = "llama2"
+
+    # FastAPI Configuration
+    API_HOST: str = "0.0.0.0"
+    API_PORT: int = 8000
+    DEBUG: bool = True
+
+    # Application Settings
+    MAX_CHAPTER_LENGTH: int = 2000
+    MAX_CHOICES: int = 4
+    DEFAULT_NOVEL_STYLE: str = "修仙"
+
+    # Novel Styles
+    NOVEL_STYLES: List[str] = [
+        "修仙",
+        "科幻",
+        "都市",
+        "言情",
+        "武侠"
+    ]
+
     class Config:
         env_file = ".env"
+        case_sensitive = True
+
 
 settings = Settings()

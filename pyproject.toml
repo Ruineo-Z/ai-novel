@@ -1,18 +1,26 @@
 [project]
 name = "ai-novel"
 version = "0.1.0"
-description = "Add your description here"
+description = "AI Interactive Novel System with Multiple Genres"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "fastapi~=0.115.12",
-    "pydantic-settings~=2.9.1",
-    "pytest~=8.3.5",
-    "pytest-asyncio~=1.0.0",
-    "python-dotenv~=1.1.0",
-    "redis~=6.2.0",
-    "requests~=2.32.3",
-    "sqlalchemy~=2.0.41",
-    "uvicorn[standard]~=0.34.2",
-    "crewai~=0.130.0"
+    "fastapi>=0.115.12",
+    "uvicorn>=0.34.3",
+
+    "pydantic>=2.11.6",
+    "python-multipart>=0.0.6",
+    "pydantic-settings>=2.9.1",
+    "requests",
+    "loguru",
+    "python-dotenv",
+
+    "langgraph",
+    "langchain-google-genai",
+    "langgraph-supervisor",
+
+    "langchain",
+    "langchain-core",
 ]
+
+
