@@ -12,7 +12,6 @@ class WorldSettingOutput(BaseModel):
     main_locations: List[str] = Field(description="主要地点")
     key_factions: List[str] = Field(description="重要势力")
     world_rules: List[str] = Field(description="世界规则")
-    
 
 
 class CharacterOutput(BaseModel):
@@ -33,7 +32,7 @@ class ProtagonistGenerationOutput(CharacterOutput):
     """主人公生成输出"""
     starting_scenario: str = Field(description="开局场景")
 
-
+  
 class ChapterOutput(BaseModel):
     """章节内容生成输出"""
     chapter_title: str = Field(description="章节标题")
@@ -44,21 +43,3 @@ class ChapterOutput(BaseModel):
     choices: List[Choice] = Field(description="用户选择项")
     is_critical_moment: bool = Field(description="是否为关键节点")
     is_ending: bool = Field(default=False, description="是否为结局")
-
-
-class ChoiceConsequenceOutput(BaseModel):
-    """选择后果分析输出"""
-    immediate_consequence: str = Field(description="直接后果")
-    long_term_impact: str = Field(description="长期影响")
-    character_change: Optional[str] = Field(description="角色变化")
-    relationship_change: Optional[str] = Field(description="关系变化")
-    plot_direction: str = Field(description="剧情走向")
-
-
-class StoryAnalysisOutput(BaseModel):
-    """故事分析输出"""
-    current_plot_stage: str = Field(description="当前剧情阶段")
-    tension_level: int = Field(description="紧张程度(1-10)")
-    character_arc_progress: str = Field(description="角色弧线进展")
-    suggested_next_events: List[str] = Field(description="建议的下一步事件")
-    potential_endings: List[str] = Field(description="可能的结局")

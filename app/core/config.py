@@ -11,8 +11,8 @@ class Settings(BaseSettings):
     # AI Model Configuration
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-preview-05-20")
-    OLLAMA_BASE_URL: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "llama2"
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "")
 
     # FastAPI Configuration
     API_HOST: str = "0.0.0.0"
@@ -32,6 +32,9 @@ class Settings(BaseSettings):
         "言情",
         "武侠"
     ]
+
+    # DataStore
+    REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379")
 
     class Config:
         env_file = ".env"

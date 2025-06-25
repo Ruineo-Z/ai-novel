@@ -15,12 +15,11 @@ dependencies = [
     "loguru",
     "python-dotenv",
 
-    "langgraph",
+    "crewai>=0.70.0",
+    "crewai-tools>=0.12.0",
     "langchain-google-genai",
-    "langgraph-supervisor",
-
-    "langchain",
-    "langchain-core",
+    "langchain-ollama",
+    "chromadb>=0.4.0",
 ]
 
 
