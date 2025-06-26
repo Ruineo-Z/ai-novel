@@ -13,10 +13,11 @@ class Settings(BaseSettings):
     GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-preview-05-20")
     OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "")
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
 
     # FastAPI Configuration
     API_HOST: str = "0.0.0.0"
-    API_PORT: int = 8000
+    API_PORT: int = 8001
     DEBUG: bool = True
 
     # Application Settings

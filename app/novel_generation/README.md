@@ -118,7 +118,7 @@ context = memory.get_session_context(session_id)
 
 ### HTTP 接口
 
-通过 `app/api/crew_routes.py` 提供的 REST API：
+通过 `app/api/novel_routes.py` 提供的 REST API：
 
 ```bash
 # 创建会话

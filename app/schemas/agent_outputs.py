@@ -1,5 +1,7 @@
-from typing import List, Optional
+import json
+
 from pydantic import BaseModel, Field
+from typing import Optional, List
 from app.schemas.base import Choice, NovelStyle
 
 

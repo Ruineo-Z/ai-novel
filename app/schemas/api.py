@@ -1,3 +1,5 @@
+import json
+
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from app.schemas.base import NovelStyle, ProtagonistInfo, AIModel, ChapterContent
@@ -5,6 +7,10 @@ from app.schemas.agent_outputs import WorldSettingOutput, ChapterOutput
 
 
 # Request Models
+class NovelGenerationRequest(BaseModel):
+    novel_style: NovelStyle = Field(description="小说风格")
+
+
 class CreateNovelRequest(BaseModel):
     novel_style: NovelStyle = Field(description="小说风格")
     ai_model: AIModel = Field(default=AIModel.GEMINI, description="AI模型选择")

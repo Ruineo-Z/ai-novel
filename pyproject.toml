@@ -3,7 +3,7 @@ name = "ai-novel"
 version = "0.1.0"
 description = "AI Interactive Novel System with Multiple Genres"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115.12",
     "uvicorn>=0.34.3",
@@ -15,11 +15,11 @@ dependencies = [
     "loguru",
     "python-dotenv",
 
-    "crewai>=0.70.0",
-    "crewai-tools>=0.12.0",
-    "langchain-google-genai",
-    "langchain-ollama",
-    "chromadb>=0.4.0",
+    "llama-index-core>=0.12.0",
+    "llama-index-llms-openai>=0.3.0",
+    "llama-index-llms-gemini>=0.3.0",
+    "llama-index-llms-ollama>=0.3.0",
+    "llama-index-workflows>=0.2.0",
 ]
 
 
