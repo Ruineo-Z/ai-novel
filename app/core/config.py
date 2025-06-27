@@ -9,8 +9,8 @@ load_dotenv()
 
 class Settings(BaseSettings):
     # AI Model Configuration
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-preview-05-20")
+    GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
+    GOOGLE_MODEL: str = os.getenv("GOOGLE_MODEL", "gemini-2.5-flash-preview-05-20")
     OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "")
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")

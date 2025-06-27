@@ -123,7 +123,7 @@ class PromptManager:
 
     def get_next_chapter_prompt(self, protagonist_info: ProtagonistGenerationOutput,
                                 world_setting: WorldSettingOutput,
-                                story_history: Optional[ChapterOutput] = None,
+                                story_history: List[ChapterOutput] = None,
                                 current_chapter: int = 1) -> str:
         """获取后续章节内容生成提示词"""
         prompt = f"""
@@ -166,7 +166,7 @@ class PromptManager:
             prompt += f"""
 
 前情回顾：
-{chr(10).join(story_history[-3:])}
+{story_history}
             """
 
         return prompt

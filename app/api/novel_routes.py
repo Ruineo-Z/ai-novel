@@ -6,7 +6,7 @@ import asyncio
 from typing import AsyncGenerator
 from concurrent.futures import ThreadPoolExecutor
 
-from app.novel_generation.novel_workflow import NovelStartFlow
+from app.novel_generation.novel_workflow import NovelStartFlow, NovelStreamFlow
 from app.schemas.base import NovelStyle
 from app.core.logger import get_logger
 from llama_index.core.workflow import StartEvent
@@ -33,35 +33,30 @@ async def generate_novel_stream(request: NovelGenerationRequest):
     
     async def generate():
         try:
-            # 创建流程实例
-            flow = NovelStartFlow(request.novel_style)
+            # 创建流式工作流实例
+            flow = NovelStreamFlow(request.novel_style)
             
-            # 生成世界观
-            yield f"data: {json.dumps(StreamChunk(type='status', data={}, message='正在生成世界观设定...').model_dump(), ensure_ascii=False)}\n\n"
-            
-            # 运行workflow
-            result = await flow.run()
-            
-            # 获取生成的内容
-            world_setting = flow.state.world_setting
-            protagonist = flow.state.protagonist_info
-            chapter = flow.state.start_chapter
-            
-            if world_setting:
-                yield f"data: {json.dumps(StreamChunk(type='world_setting', data=world_setting.model_dump(), message='世界观设定完成').model_dump(), ensure_ascii=False)}\n\n"
-            
-            if protagonist:
-                yield f"data: {json.dumps(StreamChunk(type='protagonist', data=protagonist.model_dump(), message='主人公信息完成').model_dump(), ensure_ascii=False)}\n\n"
-            
-            if chapter:
-                yield f"data: {json.dumps(StreamChunk(type='chapter', data=chapter.model_dump(), message='第一章内容完成').model_dump(), ensure_ascii=False)}\n\n"
-            
-            # 完成
-            yield f"data: {json.dumps(StreamChunk(type='complete', data={'finished': True}, message='小说生成完成！').model_dump(), ensure_ascii=False)}\n\n"
+            # 使用真正的流式方法
+            async for stream_data in flow.run_with_streaming():
+                chunk = StreamChunk(
+                    type=stream_data["event_type"],
+                    data=stream_data["data"],
+                    message=stream_data["message"]
+                )
+                yield f"data: {json.dumps(chunk.model_dump(), ensure_ascii=False)}\n\n"
+                
+                # 如果是完成事件，结束流
+                if stream_data["event_type"] == "complete":
+                    break
             
         except Exception as e:
             logger.error(f"生成小说时出错: {e}")
-            yield f"data: {json.dumps(StreamChunk(type='error', data={'error': str(e)}, message=f'生成失败: {str(e)}').model_dump(), ensure_ascii=False)}\n\n"
+            error_chunk = StreamChunk(
+                type="error",
+                data={"error": str(e)},
+                message=f"生成失败: {str(e)}"
+            )
+            yield f"data: {json.dumps(error_chunk.model_dump(), ensure_ascii=False)}\n\n"
     
     return StreamingResponse(
         generate(),

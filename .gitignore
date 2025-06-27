@@ -172,3 +172,4 @@ data/
 *.backup
 *.old
 test.*
+.vscode
