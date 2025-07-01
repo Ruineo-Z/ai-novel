@@ -20,6 +20,9 @@ dependencies = [
     "llama-index-llms-google-genai>=0.1.12",
     "llama-index-llms-ollama>=0.3.0",
     "llama-index-workflows>=0.2.0",
+
+    # Neo4j图数据库支持
+    "neo4j>=5.15.0",
 ]
 
 

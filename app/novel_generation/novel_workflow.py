@@ -246,3 +246,4 @@ async def run_workflow():
 if __name__ == "__main__":
     # 运行流式工作流
     asyncio.run(run_workflow())
+

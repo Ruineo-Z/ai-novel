@@ -4,8 +4,8 @@
   "metadata": {
     "version": "2.0.0",
     "description": "project 级资源注册表",
-    "createdAt": "2025-06-26T08:26:27.261Z",
-    "updatedAt": "2025-06-26T08:26:27.261Z",
+    "createdAt": "2025-07-01T14:30:23.809Z",
+    "updatedAt": "2025-07-01T14:30:23.810Z",
     "resourceCount": 5
   },
   "resources": [
@@ -17,9 +17,9 @@
       "description": "专业角色，提供特定领域的专业能力",
       "reference": "@project://.promptx/resource/domain/python-ai-developer/python-ai-developer.role.md",
       "metadata": {
-        "createdAt": "2025-06-26T08:26:27.261Z",
-        "updatedAt": "2025-06-26T08:26:27.261Z",
-        "scannedAt": "2025-06-26T08:26:27.261Z"
+        "createdAt": "2025-07-01T14:30:23.809Z",
+        "updatedAt": "2025-07-01T14:30:23.809Z",
+        "scannedAt": "2025-07-01T14:30:23.809Z"
       }
     },
     {
@@ -30,9 +30,9 @@
       "description": "思维模式，指导AI的思考方式",
       "reference": "@project://.promptx/resource/domain/python-ai-developer/thought/performance-optimization.thought.md",
       "metadata": {
-        "createdAt": "2025-06-26T08:26:27.261Z",
-        "updatedAt": "2025-06-26T08:26:27.261Z",
-        "scannedAt": "2025-06-26T08:26:27.261Z"
+        "createdAt": "2025-07-01T14:30:23.809Z",
+        "updatedAt": "2025-07-01T14:30:23.809Z",
+        "scannedAt": "2025-07-01T14:30:23.809Z"
       }
     },
     {
@@ -43,9 +43,9 @@
       "description": "思维模式，指导AI的思考方式",
       "reference": "@project://.promptx/resource/domain/python-ai-developer/thought/python-ai-expertise.thought.md",
       "metadata": {
-        "createdAt": "2025-06-26T08:26:27.261Z",
-        "updatedAt": "2025-06-26T08:26:27.261Z",
-        "scannedAt": "2025-06-26T08:26:27.261Z"
+        "createdAt": "2025-07-01T14:30:23.809Z",
+        "updatedAt": "2025-07-01T14:30:23.809Z",
+        "scannedAt": "2025-07-01T14:30:23.809Z"
       }
     },
     {
@@ -56,9 +56,9 @@
       "description": "执行模式，定义具体的行为模式",
       "reference": "@project://.promptx/resource/domain/python-ai-developer/execution/agent-development-workflow.execution.md",
       "metadata": {
-        "createdAt": "2025-06-26T08:26:27.261Z",
-        "updatedAt": "2025-06-26T08:26:27.261Z",
-        "scannedAt": "2025-06-26T08:26:27.261Z"
+        "createdAt": "2025-07-01T14:30:23.810Z",
+        "updatedAt": "2025-07-01T14:30:23.810Z",
+        "scannedAt": "2025-07-01T14:30:23.810Z"
       }
     },
     {
@@ -69,9 +69,9 @@
       "description": "执行模式，定义具体的行为模式",
       "reference": "@project://.promptx/resource/domain/python-ai-developer/execution/database-optimization.execution.md",
       "metadata": {
-        "createdAt": "2025-06-26T08:26:27.261Z",
-        "updatedAt": "2025-06-26T08:26:27.261Z",
-        "scannedAt": "2025-06-26T08:26:27.261Z"
+        "createdAt": "2025-07-01T14:30:23.810Z",
+        "updatedAt": "2025-07-01T14:30:23.810Z",
+        "scannedAt": "2025-07-01T14:30:23.810Z"
       }
     }
   ],
