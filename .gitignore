@@ -212,3 +212,6 @@ logs
 docs
 *.json
 chroma_db
+
+# YoYo AI version control directory
+.yoyo/
