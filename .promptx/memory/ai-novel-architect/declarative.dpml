@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<memory>
+  <item id="mem_1752117692712_1xe6kz0fr" time="2025/07/10 11:21">
+    <content>
+      用户需要构建AI互动小说项目，已完成完整技术方案设计：
+      1. 项目需求：主题选择(都市/科幻/修仙/武侠)、主人公自定义/AI生成、3选项+自由输入、完全自由的故事发展
+      2. 技术栈：Next.js 14 + TypeScript + PostgreSQL + OpenAI GPT-4
+      3. 核心挑战：AI上下文管理、故事连贯性、用户体验优化
+      4. 交付文档：technical-design.md、implementation-plan.md、quick-start.md
+      5. 实施计划：34天开发周期，4个阶段
+      6. 项目路径：/Users/augenstern/development/personal/ai-novel
+    </content>
+    <tags>#其他</tags>
+  </item>
+  <item id="mem_1752118635123_0spwvtjon" time="2025/07/10 11:37">
+    <content>
+      用户明确只会Python语言，需要先开发后端功能。已重新设计完整的Python后端技术方案：
+      1. 技术栈：FastAPI + SQLAlchemy + PostgreSQL + Redis + OpenAI
+      2. 项目结构：模块化设计，清晰的目录组织
+      3. 核心功能：4种主题、主人公自定义/AI生成、3选项+自由输入、上下文管理
+      4. 实施计划：26天开发周期，后端优先策略
+      5. 交付文档：python-quick-start.md、技术设计文档、实施计划
+      6. 成本预估：开发免费，运营$60-205/月
+      7. 特色：Python原生、自动文档、Docker支持、AI集成完整
+    </content>
+    <tags>#其他</tags>
+  </item>
+  <item id="mem_1752120566731_erztb2vof" time="2025/07/10 12:09">
+    <content>
+      用户要求修改AI技术栈，已完成技术栈替换：
+      1. 内容生成：OpenAI GPT-4 → Google Gemini Pro
+      2. Embedding：OpenAI → Jina AI
+      3. AI框架：原生SDK → LlamaIndex
+      4. 向量数据库：Pinecone → ChromaDB
+      5. 优势：成本降低70-80%，本地部署，免费额度大
+      6. 已更新：requirements.txt、AI服务代码、向量存储、快速开始指南
+      7. 新技术栈特点：统一框架、RAG优化、多模态支持、易于扩展
+    </content>
+    <tags>#其他</tags>
+  </item>
+</memory>
