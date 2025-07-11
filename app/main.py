@@ -11,6 +11,8 @@ from app.core.config import settings, get_cors_config, validate_ai_services, val
 from app.core.logging import init_logging, get_logger
 from app.core.database import init_database, cleanup_database
 from app.core.security import init_security
+from app.services.ai import init_ai_services
+from app.api.v1 import api_router
 
 # 初始化日志系统
 init_logging()
@@ -42,6 +44,12 @@ async def lifespan(app: FastAPI):
         # 初始化数据库
         await init_database()
         logger.info("✅ 数据库初始化完成")
+
+        # 初始化AI服务
+        if init_ai_services():
+            logger.info("✅ AI服务初始化完成")
+        else:
+            logger.warning("⚠️ AI服务初始化失败")
 
         logger.info(f"📚 文档地址: http://localhost:{settings.PORT}/docs")
         logger.info(f"🔍 ReDoc地址: http://localhost:{settings.PORT}/redoc")
@@ -81,6 +89,9 @@ app.add_middleware(
     CORSMiddleware,
     **cors_config
 )
+
+# 注册API路由
+app.include_router(api_router, prefix="/api/v1")
 
 # 根路径
 @app.get("/")

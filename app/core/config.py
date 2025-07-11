@@ -4,11 +4,15 @@ AI互动小说 - 配置管理模块
 """
 
 import os
-from typing import List, Optional, Any
+import json
+from typing import List, Optional
+from enum import Enum
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings
-from pydantic.networks import PostgresDsn, RedisDsn
-from enum import Enum
+from dotenv import load_dotenv
+
+# 确保加载.env文件，覆盖现有环境变量
+load_dotenv(override=True)
 
 
 class Environment(str, Enum):
@@ -33,86 +37,124 @@ class Settings(BaseSettings):
     """应用配置类"""
 
     # === 基础应用配置 ===
-    APP_NAME: str = Field(default="AI互动小说API", description="应用名称")
-    APP_VERSION: str = Field(default="1.0.0", description="应用版本")
+    APP_NAME: str = Field(default="AI互动小说API", description="应用名称", env="APP_NAME")
+    APP_VERSION: str = Field(default="1.0.0", description="应用版本", env="APP_VERSION")
     ENVIRONMENT: Environment = Field(
-        default=Environment.DEVELOPMENT, description="运行环境"
+        default=Environment.DEVELOPMENT, description="运行环境", env="ENVIRONMENT"
     )
-    DEBUG: bool = Field(default=True, description="调试模式")
+    DEBUG: bool = Field(default=True, description="调试模式", env="DEBUG")
 
     # === 服务器配置 ===
-    HOST: str = Field(default="0.0.0.0", description="服务器主机")
-    PORT: int = Field(default=20000, description="服务器端口")
-    RELOAD: bool = Field(default=True, description="热重载")
+    HOST: str = Field(default="0.0.0.0", description="服务器主机", env="HOST")
+    PORT: int = Field(default=20000, description="服务器端口", env="PORT")
+    RELOAD: bool = Field(default=True, description="热重载", env="RELOAD")
 
     # === 安全配置 ===
     SECRET_KEY: str = Field(
         default="your-super-secret-key-here-change-in-production-at-least-32-chars",
         description="JWT密钥",
+        env="SECRET_KEY"
     )
-    ALGORITHM: str = Field(default="HS256", description="JWT算法")
+    ALGORITHM: str = Field(default="HS256", description="JWT算法", env="ALGORITHM")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(
-        default=30, description="访问令牌过期时间(分钟)"
+        default=30, description="访问令牌过期时间(分钟)", env="ACCESS_TOKEN_EXPIRE_MINUTES"
     )
     ALLOWED_HOSTS: List[str] = Field(default=["*"], description="允许的主机列表")
 
     # === 数据库配置 ===
-    DATABASE_URL: Optional[str] = Field(None, description="数据库连接字符串")
-    DATABASE_ECHO: bool = Field(default=False, description="数据库SQL日志")
-    DATABASE_POOL_SIZE: int = Field(default=5, description="数据库连接池大小")
-    DATABASE_MAX_OVERFLOW: int = Field(default=10, description="数据库连接池最大溢出")
+    DATABASE_URL: Optional[str] = Field(None, description="数据库连接字符串", env="DATABASE_URL")
+    DATABASE_ECHO: bool = Field(default=False, description="数据库SQL日志", env="DATABASE_ECHO")
+    DATABASE_POOL_SIZE: int = Field(
+        default=5, description="数据库连接池大小", env="DATABASE_POOL_SIZE"
+    )
+    DATABASE_MAX_OVERFLOW: int = Field(
+        default=10, description="数据库连接池最大溢出", env="DATABASE_MAX_OVERFLOW"
+    )
 
     # === Redis配置 ===
-    REDIS_URL: Optional[str] = Field(None, description="Redis连接字符串")
-    REDIS_EXPIRE_TIME: int = Field(default=3600, description="Redis默认过期时间(秒)")
+    REDIS_URL: Optional[str] = Field(
+        None, description="Redis连接字符串", env="REDIS_URL"
+    )
+    REDIS_EXPIRE_TIME: int = Field(
+        default=3600, description="Redis默认过期时间(秒)", env="REDIS_EXPIRE_TIME"
+    )
 
     # === AI服务配置 ===
-    GOOGLE_API_KEY: str = Field(
-        default="your-google-gemini-api-key-here", description="Google Gemini API密钥"
+    GOOGLE_API_KEY: Optional[str] = Field(
+        default="your-google-gemini-api-key-here",
+        description="Google Gemini API密钥",
+        env="GOOGLE_API_KEY"
     )
-    JINA_API_KEY: str = Field(
-        default="your-jina-ai-api-key-here", description="Jina AI API密钥"
+    JINA_API_KEY: Optional[str] = Field(
+        default="your-jina-ai-api-key-here",
+        description="Jina AI API密钥",
+        env="JINA_API_KEY"
     )
-    GEMINI_MODEL: str = Field(default="gemini-pro", description="Gemini模型名称")
+    GEMINI_MODEL: str = Field(
+        default="models/gemini-1.5-flash", description="Gemini模型名称", env="GEMINI_MODEL"
+    )
     JINA_EMBEDDING_MODEL: str = Field(
-        default="jina-embeddings-v2-base-en", description="Jina嵌入模型"
+        default="jina-embeddings-v3", description="Jina嵌入模型", env="JINA_EMBEDDING_MODEL"
     )
 
     # === ChromaDB配置 ===
-    CHROMA_HOST: str = Field(default="localhost", description="ChromaDB主机地址")
-    CHROMA_PORT: int = Field(default=8000, description="ChromaDB端口")
+    CHROMA_HOST: str = Field(
+        default="localhost", description="ChromaDB主机地址", env="CHROMA_HOST"
+    )
+    CHROMA_PORT: int = Field(
+        default=8000, description="ChromaDB端口", env="CHROMA_PORT"
+    )
     CHROMA_PERSIST_DIR: str = Field(
-        default="./chroma_db", description="ChromaDB持久化目录"
+        default="./chroma_db", description="ChromaDB持久化目录", env="CHROMA_PERSIST_DIR"
     )
     CHROMA_COLLECTION_NAME: str = Field(
-        default="story_memory", description="ChromaDB集合名称"
+        default="story_memory", description="ChromaDB集合名称", env="CHROMA_COLLECTION_NAME"
     )
-    VECTOR_DIMENSION: int = Field(default=768, description="向量维度")
-    MAX_SEARCH_RESULTS: int = Field(default=10, description="最大搜索结果数")
+    VECTOR_DIMENSION: int = Field(
+        default=1024, description="向量维度", env="VECTOR_DIMENSION"
+    )
+    MAX_SEARCH_RESULTS: int = Field(
+        default=10, description="最大搜索结果数", env="MAX_SEARCH_RESULTS"
+    )
 
     # === AI服务限制 ===
-    MAX_TOKENS_PER_REQUEST: int = Field(default=4000, description="每次请求最大token数")
-    MAX_REQUESTS_PER_MINUTE: int = Field(default=60, description="每分钟最大请求数")
-    AI_TIMEOUT_SECONDS: int = Field(default=30, description="AI服务超时时间(秒)")
+    MAX_TOKENS_PER_REQUEST: int = Field(
+        default=4000, description="每次请求最大token数", env="MAX_TOKENS_PER_REQUEST"
+    )
+    MAX_REQUESTS_PER_MINUTE: int = Field(
+        default=60, description="每分钟最大请求数", env="MAX_REQUESTS_PER_MINUTE"
+    )
+    AI_TIMEOUT_SECONDS: int = Field(
+        default=30, description="AI服务超时时间(秒)", env="AI_TIMEOUT_SECONDS"
+    )
 
     # === 日志配置 ===
-    LOG_LEVEL: LogLevel = Field(default=LogLevel.INFO, description="日志级别")
+    LOG_LEVEL: LogLevel = Field(default=LogLevel.INFO, description="日志级别", env="LOG_LEVEL")
     LOG_FORMAT: str = Field(
         default="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         description="日志格式",
+        env="LOG_FORMAT"
     )
-    LOG_FILE: Optional[str] = Field(None, description="日志文件路径")
+    LOG_FILE: Optional[str] = Field(None, description="日志文件路径", env="LOG_FILE")
 
     # === CORS配置 ===
-    CORS_ORIGINS: List[str] = Field(default=["*"], description="CORS允许的源")
-    CORS_METHODS: List[str] = Field(default=["*"], description="CORS允许的方法")
-    CORS_HEADERS: List[str] = Field(default=["*"], description="CORS允许的头部")
+    CORS_ORIGINS: List[str] = Field(
+        default=["*"], description="CORS允许的源", env="CORS_ORIGINS"
+    )
+    CORS_METHODS: List[str] = Field(
+        default=["*"], description="CORS允许的方法", env="CORS_METHODS"
+    )
+    CORS_HEADERS: List[str] = Field(
+        default=["*"], description="CORS允许的头部", env="CORS_HEADERS"
+    )
 
     # === 文件上传配置 ===
     MAX_FILE_SIZE: int = Field(
-        default=10 * 1024 * 1024, description="最大文件大小(字节)"
+        default=10 * 1024 * 1024, description="最大文件大小(字节)", env="MAX_FILE_SIZE"
     )
-    UPLOAD_DIR: str = Field(default="./uploads", description="文件上传目录")
+    UPLOAD_DIR: str = Field(
+        default="./uploads", description="文件上传目录", env="UPLOAD_DIR"
+    )
 
     @field_validator("DATABASE_URL", mode="before")
     @classmethod
@@ -144,6 +186,42 @@ class Settings(BaseSettings):
         """确保上传目录存在"""
         os.makedirs(v, exist_ok=True)
         return v
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v) -> List[str]:
+        """解析CORS源配置"""
+        if isinstance(v, str):
+            try:
+                # 尝试解析JSON字符串
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+                return [v]  # 如果不是列表，作为单个值处理
+            except json.JSONDecodeError:
+                # 如果不是JSON，按逗号分割
+                return [origin.strip() for origin in v.split(",") if origin.strip()]
+        elif isinstance(v, list):
+            return v
+        return ["*"]  # 默认值
+
+    @field_validator("CORS_METHODS", "CORS_HEADERS", mode="before")
+    @classmethod
+    def parse_cors_list(cls, v) -> List[str]:
+        """解析CORS方法和头部配置"""
+        if isinstance(v, str):
+            try:
+                # 尝试解析JSON字符串
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+                return [v]  # 如果不是列表，作为单个值处理
+            except json.JSONDecodeError:
+                # 如果不是JSON，按逗号分割
+                return [item.strip() for item in v.split(",") if item.strip()]
+        elif isinstance(v, list):
+            return v
+        return ["*"]  # 默认值
 
     @property
     def is_development(self) -> bool:
@@ -187,9 +265,10 @@ class Settings(BaseSettings):
         return "sqlite+aiosqlite:///./ai_novel.db"
 
     model_config = {
-        "env_file": ".env",
+        "env_file": [".env", "../.env"],
         "env_file_encoding": "utf-8",
         "case_sensitive": True,
+        "extra": "ignore",
     }
 
 
@@ -217,7 +296,7 @@ def validate_ai_services() -> bool:
         ):
             return False
         return True
-    except Exception:
+    except (AttributeError, ValueError, TypeError):
         return False
 
 
@@ -228,7 +307,7 @@ def validate_database_connection() -> bool:
             # 验证PostgreSQL连接格式
             return str(settings.DATABASE_URL).startswith(("postgresql://", "sqlite://"))
         return True  # SQLite默认配置
-    except Exception:
+    except (AttributeError, ValueError, TypeError):
         return False
 
 

@@ -332,10 +332,21 @@ def validate_security_config() -> bool:
         return False
 
 
+# 兼容函数 - 为CRUD模块提供
+def get_password_hash(password: str) -> str:
+    """获取密码哈希 - 兼容函数"""
+    return security_manager.get_password_hash(password)
+
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """验证密码 - 兼容函数"""
+    return security_manager.verify_password(plain_password, hashed_password)
+
+
 # 初始化安全模块
 def init_security():
     """初始化安全模块"""
     if not validate_security_config():
         raise RuntimeError("安全配置验证失败")
-    
+
     logger.info("安全模块初始化完成")

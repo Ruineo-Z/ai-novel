@@ -209,3 +209,6 @@ __marimo__/
 uv.lock
 tests
 logs
+docs
+*.json
+chroma_db

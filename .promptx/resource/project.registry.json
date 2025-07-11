@@ -4,8 +4,8 @@
   "metadata": {
     "version": "2.0.0",
     "description": "project 级资源注册表",
-    "createdAt": "2025-07-10T04:16:41.387Z",
-    "updatedAt": "2025-07-10T04:16:41.391Z",
+    "createdAt": "2025-07-11T05:53:19.803Z",
+    "updatedAt": "2025-07-11T05:53:19.807Z",
     "resourceCount": 8
   },
   "resources": [
@@ -17,9 +17,9 @@
       "description": "专业角色，提供特定领域的专业能力",
       "reference": "@project://.promptx/resource/role/ai-novel-architect/ai-novel-architect.role.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.388Z",
-        "updatedAt": "2025-07-10T04:16:41.388Z",
-        "scannedAt": "2025-07-10T04:16:41.388Z",
+        "createdAt": "2025-07-11T05:53:19.804Z",
+        "updatedAt": "2025-07-11T05:53:19.804Z",
+        "scannedAt": "2025-07-11T05:53:19.804Z",
         "path": "role/ai-novel-architect/ai-novel-architect.role.md"
       }
     },
@@ -31,9 +31,9 @@
       "description": "执行模式，定义具体的行为模式",
       "reference": "@project://.promptx/resource/role/ai-novel-architect/execution/architecture-design.execution.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.389Z",
-        "updatedAt": "2025-07-10T04:16:41.389Z",
-        "scannedAt": "2025-07-10T04:16:41.389Z",
+        "createdAt": "2025-07-11T05:53:19.805Z",
+        "updatedAt": "2025-07-11T05:53:19.805Z",
+        "scannedAt": "2025-07-11T05:53:19.805Z",
         "path": "role/ai-novel-architect/execution/architecture-design.execution.md"
       }
     },
@@ -45,9 +45,9 @@
       "description": "思维模式，指导AI的思考方式",
       "reference": "@project://.promptx/resource/role/ai-novel-architect/thought/system-architecture.thought.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.389Z",
-        "updatedAt": "2025-07-10T04:16:41.389Z",
-        "scannedAt": "2025-07-10T04:16:41.389Z",
+        "createdAt": "2025-07-11T05:53:19.805Z",
+        "updatedAt": "2025-07-11T05:53:19.805Z",
+        "scannedAt": "2025-07-11T05:53:19.805Z",
         "path": "role/ai-novel-architect/thought/system-architecture.thought.md"
       }
     },
@@ -59,9 +59,9 @@
       "description": "思维模式，指导AI的思考方式",
       "reference": "@project://.promptx/resource/role/ai-novel-architect/thought/technical-innovation.thought.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.389Z",
-        "updatedAt": "2025-07-10T04:16:41.389Z",
-        "scannedAt": "2025-07-10T04:16:41.389Z",
+        "createdAt": "2025-07-11T05:53:19.805Z",
+        "updatedAt": "2025-07-11T05:53:19.805Z",
+        "scannedAt": "2025-07-11T05:53:19.805Z",
         "path": "role/ai-novel-architect/thought/technical-innovation.thought.md"
       }
     },
@@ -73,9 +73,9 @@
       "description": "专业角色，提供特定领域的专业能力",
       "reference": "@project://.promptx/resource/role/ai-novel-python-dev/ai-novel-python-dev.role.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.390Z",
-        "updatedAt": "2025-07-10T04:16:41.390Z",
-        "scannedAt": "2025-07-10T04:16:41.390Z",
+        "createdAt": "2025-07-11T05:53:19.806Z",
+        "updatedAt": "2025-07-11T05:53:19.806Z",
+        "scannedAt": "2025-07-11T05:53:19.806Z",
         "path": "role/ai-novel-python-dev/ai-novel-python-dev.role.md"
       }
     },
@@ -87,9 +87,9 @@
       "description": "执行模式，定义具体的行为模式",
       "reference": "@project://.promptx/resource/role/ai-novel-python-dev/execution/ai-novel-development.execution.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.390Z",
-        "updatedAt": "2025-07-10T04:16:41.390Z",
-        "scannedAt": "2025-07-10T04:16:41.390Z",
+        "createdAt": "2025-07-11T05:53:19.806Z",
+        "updatedAt": "2025-07-11T05:53:19.806Z",
+        "scannedAt": "2025-07-11T05:53:19.806Z",
         "path": "role/ai-novel-python-dev/execution/ai-novel-development.execution.md"
       }
     },
@@ -101,9 +101,9 @@
       "description": "思维模式，指导AI的思考方式",
       "reference": "@project://.promptx/resource/role/ai-novel-python-dev/thought/ai-integration.thought.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.391Z",
-        "updatedAt": "2025-07-10T04:16:41.391Z",
-        "scannedAt": "2025-07-10T04:16:41.391Z",
+        "createdAt": "2025-07-11T05:53:19.806Z",
+        "updatedAt": "2025-07-11T05:53:19.806Z",
+        "scannedAt": "2025-07-11T05:53:19.806Z",
         "path": "role/ai-novel-python-dev/thought/ai-integration.thought.md"
       }
     },
@@ -115,9 +115,9 @@
       "description": "思维模式，指导AI的思考方式",
       "reference": "@project://.promptx/resource/role/ai-novel-python-dev/thought/python-development.thought.md",
       "metadata": {
-        "createdAt": "2025-07-10T04:16:41.391Z",
-        "updatedAt": "2025-07-10T04:16:41.391Z",
-        "scannedAt": "2025-07-10T04:16:41.391Z",
+        "createdAt": "2025-07-11T05:53:19.807Z",
+        "updatedAt": "2025-07-11T05:53:19.807Z",
+        "scannedAt": "2025-07-11T05:53:19.807Z",
         "path": "role/ai-novel-python-dev/thought/python-development.thought.md"
       }
     }
